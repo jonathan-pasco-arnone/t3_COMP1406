@@ -54,7 +54,7 @@ public class MusicExchangeTestProgram2 {
     
     // Simulate a user requesting a list of songs by a specific artist 
     catalog = discoStew.requestSonglistByArtist(mec, "Jaw");
-    System.out.println("Songӳ by Jaw: ");
+    System.out.println("Song's by Jaw: ");
     for (String s: catalog){
       System.out.println("  " + s);
     }

@@ -1,14 +1,20 @@
+/* Music Center program
+
+Created by: Jonathan Pasco-Arnone
+Created on: November 2023
+
+*/
 import java.util.*;
 
 public class MusicExchangeCenter {
     private ArrayList<User> users;
-    public HashMap<String, Float> royalties = new HashMap<String, Float>();
-    public ArrayList<Song> downloadedSongs = new ArrayList<Song>();
+    private HashMap<String, Float> royalties = new HashMap<>();
+    private ArrayList<Song> downloadedSongs = new ArrayList<>();
     public MusicExchangeCenter() {
-        users = new ArrayList<User>();
+        users = new ArrayList<>();
     }
     public ArrayList<User> onlineUsers() {
-        ArrayList<User> onlineList = new ArrayList<User>();
+        ArrayList<User> onlineList = new ArrayList<>();
         for (User person : users) {
             if (person.isOnline()) {
                 onlineList.add(person);
@@ -38,7 +44,7 @@ public class MusicExchangeCenter {
         return null;
     }
     public ArrayList<Song> allAvailableSongs() {
-        ArrayList<Song> allSongs = new ArrayList<Song>();
+        ArrayList<Song> allSongs = new ArrayList<>();
         for (User person : onlineUsers()) {
             for (Song track : person.getSonglist()) {
                 allSongs.add(track);
@@ -68,7 +74,7 @@ public class MusicExchangeCenter {
     }
 
     public ArrayList<Song> availableSongsByArtist(String artist) {
-        ArrayList<Song> songsByArtist = new ArrayList<Song>();
+        ArrayList<Song> songsByArtist = new ArrayList<>();
         for (Song track : allAvailableSongs()) {
             if (track.getArtist().equals(artist)) {
                 songsByArtist.add(track);
@@ -85,7 +91,7 @@ public class MusicExchangeCenter {
     }
 
     public TreeSet<Song> uniqueDownloads() {
-        TreeSet<Song> orderedSongs = new TreeSet<Song>();
+        TreeSet<Song> orderedSongs = new TreeSet<>();
         Collections.sort(downloadedSongs);
 
         for (Song track : downloadedSongs) {
@@ -98,8 +104,8 @@ public class MusicExchangeCenter {
     }
 
     public ArrayList<Pair<Integer,Song>> songsByPopularity() {
-        ArrayList<Pair<Integer,Song>> songList = new ArrayList<Pair<Integer,Song>>();
-        ArrayList<Pair<Song,Integer>> songViews = new ArrayList<Pair<Song,Integer>>();
+        ArrayList<Pair<Integer,Song>> songList = new ArrayList<>();
+        ArrayList<Pair<Song,Integer>> songViews = new ArrayList<>();
         for (Song track : downloadedSongs) {
 
             int counter = 0;
@@ -115,7 +121,7 @@ public class MusicExchangeCenter {
 
             // If the song has not already been added to the list then it will be added
             if (!songAdded) {
-                Pair<Song, Integer> newSong = new Pair<Song, Integer>(track, 1);
+                Pair<Song, Integer> newSong = new Pair<>(track, 1);
                 songViews.add(newSong);
             }
 
@@ -124,7 +130,7 @@ public class MusicExchangeCenter {
 
         // Move the pairs of song -> views to the list that wants views -> song
         for (Pair<Song, Integer> songIntegerPair : songViews) {
-            Pair<Integer, Song> newPair = new Pair<Integer, Song>(songIntegerPair.getValue(), songIntegerPair.getKey());
+            Pair<Integer, Song> newPair = new Pair<>(songIntegerPair.getValue(), songIntegerPair.getKey());
             songList.add(newPair);
         }
 

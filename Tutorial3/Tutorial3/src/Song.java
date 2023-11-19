@@ -1,3 +1,9 @@
+/* Song class file program
+
+Created by: Jonathan Pasco-Arnone
+Created on: November 2023
+
+*/
 public class Song implements Comparable<Song> {
     private String title;
     private String artist;

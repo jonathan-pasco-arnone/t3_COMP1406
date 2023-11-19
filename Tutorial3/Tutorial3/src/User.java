@@ -1,3 +1,9 @@
+/* User class file program
+
+Created by: Jonathan Pasco-Arnone
+Created on: November 2023
+
+*/
 import java.util.ArrayList;
 public class User {
     private String     userName;
@@ -9,7 +15,7 @@ public class User {
     public User(String u)  {
         userName = u;
         online = false;
-        songlist = new ArrayList<Song>();
+        songlist = new ArrayList<>();
     }
 
     public ArrayList<Song> getSonglist() { return songlist; }
@@ -27,9 +33,9 @@ public class User {
     }
 
     public ArrayList<String> requestCompleteSonglist(MusicExchangeCenter m) {
-        ArrayList<String> allSongs = new ArrayList<String>();
+        ArrayList<String> allSongs = new ArrayList<>();
         allSongs.add(String.format("%9s", "TITLE") + String.format("%41s", "ARTIST")
-                + String.format("%18s", "TIME") + String.format("%7s", "OWNER"));
+                + String.format("%18s", "TIME") + String.format("%7s", "OWNER") + "\n");
 
         for (Song track : m.allAvailableSongs()) {
             String text = String.format("%-2d", allSongs.size()) + ". " + String.format("%-40s", track.getTitle())
@@ -41,9 +47,9 @@ public class User {
     }
 
     public ArrayList<String> requestSonglistByArtist(MusicExchangeCenter m, String artist) {
-        ArrayList<String> allSongs = new ArrayList<String>();
+        ArrayList<String> allSongs = new ArrayList<>();
         allSongs.add(String.format("%9s", "TITLE") + String.format("%41s", "ARTIST")
-                + String.format("%18s", "TIME") + String.format("%7s", "OWNER"));
+                + String.format("%18s", "TIME") + String.format("%7s", "OWNER") + "\n");
 
         for (Song track : m.availableSongsByArtist(artist)) {
             String text = String.format("%-2d", allSongs.size()) + ". " + String.format("%-40s", track.getTitle())
