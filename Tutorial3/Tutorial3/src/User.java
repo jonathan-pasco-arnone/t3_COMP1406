@@ -23,19 +23,18 @@ public class User {
     }
 
     public void addSong(Song s) {
-        if (s.getOwner() == null) {
-            s.setOwner(this);
-        }
         songlist.add(new Song(s.getTitle(), s.getArtist(), s.getMinutes(), s.getSeconds(), this));
-
     }
 
     public ArrayList<String> requestCompleteSonglist(MusicExchangeCenter m) {
         ArrayList<String> allSongs = new ArrayList<String>();
+        allSongs.add(String.format("%9s", "TITLE") + String.format("%41s", "ARTIST")
+                + String.format("%18s", "TIME") + String.format("%7s", "OWNER"));
+
         for (Song track : m.allAvailableSongs()) {
-            String text = (allSongs.size() - 1) + ". " + String.format("%-40b", track.getTitle())
-                    + String.format("%-15", track.getArtist()) + track.getMinutes()
-                    + ":" + String.format("%02d", track.getSeconds()) + "  " + track.getOwner();
+            String text = String.format("%-2d", allSongs.size()) + ". " + String.format("%-40s", track.getTitle())
+                    + String.format("%-20s", track.getArtist()) + track.getMinutes()
+                    + ":" + String.format("%02d", track.getSeconds()) + "  " + (track.getOwner()).getUserName();
             allSongs.add(text);
         }
         return allSongs;
@@ -43,10 +42,13 @@ public class User {
 
     public ArrayList<String> requestSonglistByArtist(MusicExchangeCenter m, String artist) {
         ArrayList<String> allSongs = new ArrayList<String>();
+        allSongs.add(String.format("%9s", "TITLE") + String.format("%41s", "ARTIST")
+                + String.format("%18s", "TIME") + String.format("%7s", "OWNER"));
+
         for (Song track : m.availableSongsByArtist(artist)) {
-            String text = (allSongs.size() - 1) + ". " + String.format("%-40b", track.getTitle())
-                    + String.format("%-15", track.getArtist()) + track.getMinutes()
-                    + ":" + String.format("%02d", track.getSeconds()) + "  " + track.getOwner();
+            String text = String.format("%-2d", allSongs.size()) + ". " + String.format("%-40s", track.getTitle())
+                    + String.format("%-20s", track.getArtist()) + track.getMinutes()
+                    + ":" + String.format("%02d", track.getSeconds()) + "  " + (track.getOwner()).getUserName();
             allSongs.add(text);
         }
         return allSongs;
@@ -70,5 +72,12 @@ public class User {
 
     public void logoff() {
         online = false;
+    }
+
+    public void downloadSong(MusicExchangeCenter m, String title, String ownerName) {
+        Song track = m.getSong(title, ownerName);
+        if (track != null) {
+            this.addSong(track);
+        }
     }
 }

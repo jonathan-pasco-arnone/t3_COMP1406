@@ -1,4 +1,4 @@
-public class Song {
+public class Song implements Comparable<Song> {
     private String title;
     private String artist;
     private int duration;
@@ -41,8 +41,15 @@ public class Song {
         return duration % 60;
     }
 
+    public User getOwner() {
+        return owner;
+    }
 
     public String toString()  {
         return("\"" + title + "\" by " + artist + " " + (duration / 60) + ":" + (duration%60));
+    }
+
+    public int compareTo(Song s) {
+        return title.compareTo(s.getTitle());
     }
 }

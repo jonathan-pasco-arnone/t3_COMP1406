@@ -1,17 +1,13 @@
 
 u
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(éÂöR8³ô¾ö½1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(éÂöR8Ã•ïÆ¾1
 v
-java:S2293""YReplace the type specification in this constructor call with the diamond operator ("<>").(Ìæù8´ô¾ö½1
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ìæù8Ã•ïÆ¾1
 v
-java:S2293-"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ìæù8´ô¾ö½1
+java:S2293,"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ìæù8Ã•ïÆ¾1
 ’
-java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(À€Òåøÿÿÿÿ8´ô¾ö½1
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(À€Òåøÿÿÿÿ8Ä•ïÆ¾1
 
-java:S1319!"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(áÆ×¶8´ô¾ö½1
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(áÆ×¶8Ä•ïÆ¾1
 ’
-java:S1319,"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(şòˆÀûÿÿÿÿ8´ô¾ö½1
-G
-java:S3457%"%String contains no format specifiers.(äò‚“üÿÿÿÿ8Áô¾ö½1
-G
-java:S34570"%String contains no format specifiers.(äò‚“üÿÿÿÿ8Ãô¾ö½1
+java:S1319+"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(şòˆÀûÿÿÿÿ8Ä•ïÆ¾1

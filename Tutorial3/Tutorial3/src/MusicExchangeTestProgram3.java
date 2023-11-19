@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class MusicExchangeTestProgram3 {
   public static void main(String args[]) {
     // Create a new music exchange center

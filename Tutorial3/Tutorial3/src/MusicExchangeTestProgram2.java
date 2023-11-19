@@ -36,14 +36,14 @@ public class MusicExchangeTestProgram2 {
     for (String s: catalog){
       System.out.println("  " + s);
     }
-    
+
     // Simulate a user downloading 3 songs from the list 
     System.out.println("\nDisco Stew before downloading: " + discoStew); 
     discoStew.downloadSong(mec, "Bite My Arms Off", "Peter Punk"); 
     discoStew.downloadSong(mec, "Meadows", "Sleeping Sam"); 
     discoStew.downloadSong(mec, "If I Had a Hammer", "Country Candy"); 
-    discoStew.downloadSong(mec, "Sandy Toes", "Country Candy"); 
-    
+    discoStew.downloadSong(mec, "Sandy Toes", "Country Candy");
+
     ronnieRocker.logoff(); // log off Ronnie, next download should not go through 
     discoStew.downloadSong(mec, "Only You Can Rock Me", "Ronnie Rocker"); 
     System.out.println("Disco Stew after downloading: " + discoStew);

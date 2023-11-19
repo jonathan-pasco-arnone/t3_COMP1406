@@ -1,7 +1,9 @@
-import java.util.ArrayList;
+import java.util.*;
+
 public class MusicExchangeCenter {
     private ArrayList<User> users;
-
+    public HashMap<String, Float> royalties = new HashMap<String, Float>();
+    public ArrayList<Song> downloadedSongs = new ArrayList<Song>();
     public MusicExchangeCenter() {
         users = new ArrayList<User>();
     }
@@ -15,9 +17,21 @@ public class MusicExchangeCenter {
         return onlineList;
     }
 
+    public ArrayList<Song> getDownloadedSongs() {
+        return downloadedSongs;
+    }
     public Song getSong(String title, String ownerName) {
         for (Song track : allAvailableSongs()) {
-            if (track.getOwner().equals(ownerName)) {
+            if (track.getOwner().getUserName().equals(ownerName) && track.getTitle().equals(title)) {
+                downloadedSongs.add(track);
+
+                // Royalties
+                if (royalties.containsKey(track.getArtist())) {
+                    royalties.put(track.getArtist(), (float) 0.25 + royalties.get(track.getArtist()));
+                } else {
+                    royalties.put(track.getArtist(), (float) 0.25);
+                }
+
                 return track;
             }
         }
@@ -61,5 +75,65 @@ public class MusicExchangeCenter {
             }
         }
         return songsByArtist;
+    }
+
+    public void displayRoyalties() {
+        System.out.println("Amount  Artist\n---------------");
+        for (String name : royalties.keySet()) {
+            System.out.println(String.format("%-8s", "$" + String.format("%.2f", royalties.get(name))) + name);
+        }
+    }
+
+    public TreeSet<Song> uniqueDownloads() {
+        TreeSet<Song> orderedSongs = new TreeSet<Song>();
+        Collections.sort(downloadedSongs);
+
+        for (Song track : downloadedSongs) {
+            if (!orderedSongs.contains(track)) {
+                orderedSongs.add(track);
+            }
+        }
+
+        return orderedSongs;
+    }
+
+    public ArrayList<Pair<Integer,Song>> songsByPopularity() {
+        ArrayList<Pair<Integer,Song>> songList = new ArrayList<Pair<Integer,Song>>();
+        ArrayList<Pair<Song,Integer>> songViews = new ArrayList<Pair<Song,Integer>>();
+        for (Song track : downloadedSongs) {
+
+            int counter = 0;
+            boolean songAdded = false;
+            for(Pair<Song,Integer> currentViews : songViews) {
+                if (currentViews.getKey().getTitle().equals(track.getTitle())) {
+                    // Grabs the current view count of a song and adds one to it
+                    songViews.get(counter).setValue(songViews.get(counter).getValue() + 1);
+                    songAdded = true;
+                }
+                counter++;
+            }
+
+            // If the song has not already been added to the list then it will be added
+            if (!songAdded) {
+                Pair<Song, Integer> newSong = new Pair<Song, Integer>(track, 1);
+                songViews.add(newSong);
+            }
+
+
+        }
+
+        // Move the pairs of song -> views to the list that wants views -> song
+        for (Pair<Song, Integer> songIntegerPair : songViews) {
+            Pair<Integer, Song> newPair = new Pair<Integer, Song>(songIntegerPair.getValue(), songIntegerPair.getKey());
+            songList.add(newPair);
+        }
+
+        Collections.sort(songList, new Comparator<Pair<Integer, Song>>() {
+            public int compare(Pair<Integer, Song> p1, Pair<Integer, Song> p2) {
+                return p2.getKey() - p1.getKey();
+            }
+        });
+
+        return songList;
     }
 }
